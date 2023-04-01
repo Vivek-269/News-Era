@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./Components/Navbar";
+import News from "./Components/News";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+export default function App() {
+  const pageSize = 4;
+  const country = 'us';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<News key="general" pageSize={pageSize} country={country} headline='Top Headlines' 
+                 category="general" />} />
+          <Route path="/home" element={<News key="general" pageSize={pageSize} country={country} headline='Top Headlines' 
+                 category="general" />} />
+          <Route path="/about" element={<div> About</div>} />
+          <Route path="/sports" element={<News key="sports" pageSize={pageSize} country={country} headline='Sports News'  
+                 category="sports" />} />
+          <Route path="/science" element={<News key="science" pageSize={pageSize} country={country} headline='Science 
+                 News' category="science" />} />
+          <Route path="/technology" element={<News key="technology" pageSize={pageSize} country={country}
+            headline='Technology News' category="technology" />} />
+          <Route path="/health" element={<News key="health" pageSize={pageSize} country={country} headline='Health News' 
+                 category="health" />} />
+          <Route path="/entertainment" element={<News key="entertainment" pageSize={pageSize} country={country}
+            headline='Entertainment News' category="entertainment" />} />
+          <Route path="/business" element={<News key="business" pageSize={pageSize} country={country} headline='Business 
+                 News' category="business" />}/>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
-
-export default App;
